@@ -65,7 +65,7 @@ const DonationCards = () => {
               return (
                 <div key={item._id} className="bg-gray-100 dark:bg-slate-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
                   <img
-                    src={item.image ? `${import.meta.env.VITE_API_URL.replace('/api/v1', '')}/uploads/${item.image}` : 'https://via.placeholder.com/400x300?text=No+Image'}
+                    src={item.image || 'https://via.placeholder.com/400x300?text=No+Image'}
                     alt={item.title}
                     className="w-full h-48 object-cover"
                   />

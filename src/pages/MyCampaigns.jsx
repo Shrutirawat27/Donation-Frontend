@@ -44,7 +44,7 @@ const MyCampaigns = () => {
           {campaigns.map((c) => (
             <div key={c._id} className="border rounded-lg p-4 bg-gray-100 dark:bg-black shadow">
               <img
-                src={c.image ? `${import.meta.env.VITE_API_URL.replace('/api/v1', '')}/uploads/${c.image}` : 'https://via.placeholder.com/400x300?text=No+Image'}
+                src={c.image || 'https://via.placeholder.com/400x300?text=No+Image'}
                 alt={c.title}
                 className="h-48 w-full object-cover rounded mb-4"
               />
