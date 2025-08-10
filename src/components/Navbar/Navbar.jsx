@@ -152,6 +152,7 @@ const Navbar = () => {
         setShowMenu={setShowMenu}
         isLoggedIn={isLoggedIn}
         userName={user ? user.name : ""}
+        profileImage={user?.profileImage}
         handleLogout={handleLogout}
         handleDonateClick={handleDonateClick}
       />

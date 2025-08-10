@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
-const ResponsiveMenu = ({ showMenu, setShowMenu, isLoggedIn, handleLogout, userName }) => {
+const ResponsiveMenu = ({ showMenu, setShowMenu, isLoggedIn, handleLogout, userName, profileImage }) => {
   const [donateOpen, setDonateOpen] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
-  const navigate = useNavigate();
 
   const handleDonateClick = () => {
     if (!isLoggedIn) {
@@ -35,7 +34,15 @@ const ResponsiveMenu = ({ showMenu, setShowMenu, isLoggedIn, handleLogout, userN
         {/* User Section */}
         <div>
           <div className="flex items-center justify-start gap-3">
-            <FaUserCircle size={50} />
+            {profileImage ? (
+              <img
+                src={profileImage}
+                alt="Profile"
+                className="w-12 h-12 rounded-full object-cover"
+              />
+            ) : (
+              <FaUserCircle size={50} />
+            )}
             <div>
               <h1 className="text-xl font-semibold">{isLoggedIn ? userName : 'Guest'}</h1>
               <h1>+91 7208640562</h1>
