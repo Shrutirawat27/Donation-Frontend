@@ -32,6 +32,14 @@ const Donation = () => {
           <h2 className="text-xl font-bold mb-2">View My Donations</h2>
           <p>See all the donations you have contributed to.</p>
         </div>
+
+        <div
+          onClick={() => navigate("/donate")}
+          className="cursor-pointer p-6 bg-primary/10 border border-primary rounded-xl shadow hover:shadow-lg transition-all"
+        >
+          <h2 className="text-xl font-bold mb-2">Support a Cause</h2>
+          <p>See all the donations overall.</p>
+        </div>
       </div>
     </div>
   );

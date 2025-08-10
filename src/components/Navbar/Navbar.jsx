@@ -2,39 +2,53 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BiPhoneCall, BiSolidSun, BiSolidMoon } from 'react-icons/bi';
 import { HiMenuAlt1, HiMenuAlt3 } from 'react-icons/hi';
+import { FaUserCircle } from 'react-icons/fa';
 import ResponsiveMenu from './ResponsiveMenu';
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [showMenu, setShowMenu] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState(null);  
   const navigate = useNavigate();
   const element = document.documentElement;
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  const toggleMenu = () => setShowMenu(!showMenu);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      const parsed = JSON.parse(user);
-      setIsLoggedIn(true);
-      setUserName(parsed.name);
-    } else {
-      setIsLoggedIn(false);
-      setUserName("");
-    }
+    const loadUser = () => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      } else {
+        setUser(null);
+      }
+    };
+
+    loadUser();
+
+    window.addEventListener("userUpdated", loadUser);
+    return () => {
+      window.removeEventListener("userUpdated", loadUser);
+    };
   }, []);
+
+  const isLoggedIn = Boolean(user);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    setIsLoggedIn(false);
-    setUserName("");
+    setUser(null);
     alert("Logged out successfully");
     navigate("/");
-    window.location.reload(); 
+    window.dispatchEvent(new Event("userUpdated"));
+  };
+
+  const handleDonateClick = () => {
+    if (!isLoggedIn) {
+      alert("Please log in first to donate.");
+      navigate("/login");
+      return;
+    }
+    navigate("/donate");
   };
 
   useEffect(() => {
@@ -49,7 +63,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gradient-to-l from-violet-900 via-violet-800 to-violet-900 text-white fixed top-0 left-0 w-full border-b-[1px] border-primary/50 z-50">
+      <nav className="bg-gradient-to-l from-violet-900 via-violet-800 to-violet-900 text-white fixed top-0 left-0 w-full border-b border-primary/50 z-50">
         <div className="container">
           <div className="flex items-center justify-between h-[70px] py-2">
             {/* Logo */}
@@ -59,7 +73,7 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:block">
-              <ul className="flex items-center gap-10">
+              <ul className="flex items-center gap-5">
                 <li><Link className="hover:text-primary" to="/">Home</Link></li>
                 <li><Link className="hover:text-primary" to="/donation">Donation</Link></li>
                 <li><Link className="hover:text-primary" to="/about">About Us</Link></li>
@@ -75,12 +89,33 @@ const Navbar = () => {
                     </div>
                   </a>
                 </li>
+
                 <li>
                   {theme === "dark" ? (
                     <BiSolidSun className="text-2xl cursor-pointer" onClick={() => setTheme("light")} />
                   ) : (
                     <BiSolidMoon className="text-2xl cursor-pointer" onClick={() => setTheme("dark")} />
                   )}
+                </li>
+
+                {/* Profile icon */}
+                <li>
+                  <button
+                    onClick={() => navigate('/profile')}
+                    className="w-10 h-10 rounded-full overflow-hidden border-2 border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    title="My Profile"
+                    type="button"
+                  >
+                    {isLoggedIn && user.profileImage ? (
+                      <img
+                        src={user.profileImage}
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <FaUserCircle className="w-full h-full text-yellow-500" />
+                    )}
+                  </button>
                 </li>
 
                 <li>
@@ -96,9 +131,9 @@ const Navbar = () => {
             {/* Mobile Menu */}
             <div className="md:hidden flex items-center gap-4">
               {theme === "dark" ? (
-                <BiSolidSun className="text-2xl" onClick={() => setTheme("light")} />
+                <BiSolidSun className="text-2xl cursor-pointer" onClick={() => setTheme("light")} />
               ) : (
-                <BiSolidMoon className="text-2xl" onClick={() => setTheme("dark")} />
+                <BiSolidMoon className="text-2xl cursor-pointer" onClick={() => setTheme("dark")} />
               )}
 
               {showMenu ? (
@@ -114,9 +149,11 @@ const Navbar = () => {
       {/* Mobile Side Menu */}
       <ResponsiveMenu
         showMenu={showMenu}
+        setShowMenu={setShowMenu}
         isLoggedIn={isLoggedIn}
-        userName={userName}
+        userName={user ? user.name : ""}
         handleLogout={handleLogout}
+        handleDonateClick={handleDonateClick}
       />
     </>
   );

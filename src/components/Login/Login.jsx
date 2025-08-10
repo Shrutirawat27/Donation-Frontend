@@ -17,36 +17,37 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    e.preventDefault();
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
+      console.log("Login response data:", data);
 
-    if (res.ok) {
-      localStorage.setItem("user", JSON.stringify(data.user));
-      alert("Login successful");
-      navigate("/");
-      window.location.reload(); 
-    } else {
-      alert(data.message || "Login failed");
+      if (res.ok) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        alert("Login successful");
+        navigate("/");
+        window.location.reload(); 
+      } else {
+        alert(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Something went wrong");
     }
-  } catch (error) {
-    console.error("Login error:", error);
-    alert("Something went wrong");
-  }
-};
+  };
 
   return (
-    <div className="pt-24 min-h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
-      <div className="w-full max-w-md bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+    <div className="pt-24 min-h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-md">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="email"
@@ -54,7 +55,7 @@ const Login = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Email"
-            className="w-full px-4 py-2 border rounded bg-white dark:bg-slate-700 text-black dark:text-white"
+            className="w-full px-4 py-2 border rounded bg-white dark:bg-slate-700 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
           <input
@@ -63,18 +64,18 @@ const Login = () => {
             value={formData.password}
             onChange={handleChange}
             placeholder="Password"
-            className="w-full px-4 py-2 border rounded bg-white dark:bg-slate-700 text-black dark:text-white"
+            className="w-full px-4 py-2 border rounded bg-white dark:bg-slate-700 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
           <button
             type="submit"
-            className="btn-primary w-full rounded-full"
+            className="btn-primary w-full rounded-full py-2"
           >
             Login
           </button>
         </form>
 
-        <p className="text-center mt-4 text-sm">
+        <p className="text-center mt-4 text-sm sm:text-base">
           Don’t have an account?{' '}
           <button
             onClick={() => navigate('/signup')}

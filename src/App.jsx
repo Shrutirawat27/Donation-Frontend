@@ -16,6 +16,7 @@ import About from "./components/Pages/About";
 import Services from "./components/Pages/Services";
 import PrivacyPolicy from "./components/Pages/PrivacyPolicy";
 import Contact from "./components/Pages/Contact";
+import Profile from "./components/Pages/Profile"
 import Donation from "./pages/Donation";
 import CreateDonation from "./pages/CreateDonation";
 import MyDonations from './pages/MyDonations';
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/donation" element={<Donation />} />
         <Route path="/create-donation" element={<CreateDonation />} />
         <Route path="/my-donations" element={<MyDonations />} />

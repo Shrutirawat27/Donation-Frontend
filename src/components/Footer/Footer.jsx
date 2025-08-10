@@ -7,7 +7,7 @@ const Footer = () => {
       <div className='mx-auto max-w-[1200px] p-4'>
         {/* Footer Main Section */}
         <div className='grid py-5 md:grid-cols-4 gap-6'>
-          
+
           {/* Logo & Description */}
           <div className='px-4 py-8 col-span-1'>
             <h1 className='mb-3 text-justify text-xl sm:text-left sm:text-3xl'>
@@ -22,9 +22,9 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className='px-16 py-8'>
+          <div className='px-4 py-8'> {/* Changed px-16 to px-4 */}
             <h1 className='mb-3 text-xl font-bold sm:text-left sm:text-xl'>Quick Links</h1>
-            <ul className='flex flex-col gap-3'>
+            <ul className='flex flex-col gap-3 text-left'>
               <li><a href='/' className='hover:text-primary transition-all'>Home</a></li>
               <li><a href='/about' className='hover:text-primary transition-all'>About</a></li>
               <li><a href='/services' className='hover:text-primary transition-all'>Services</a></li>
@@ -35,7 +35,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div className='px-4 py-8'>
             <h1 className='mb-3 text-xl font-bold sm:text-left sm:text-xl'>Contact Info</h1>
-            <ul className='flex flex-col gap-3'>
+            <ul className='flex flex-col gap-3 text-left'>
               <li className='hover:text-primary transition-all'>Mumbai, Maharashtra</li>
               <li>
                 <a href='tel:+917208640562' className='hover:text-primary transition-all'>
@@ -88,7 +88,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Bottom Section */}
