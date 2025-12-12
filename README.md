@@ -1,12 +1,67 @@
-# React + Vite
+# DonateZone – Donation Website
+A responsive and modern donation platform built using React, Vite, and Tailwind CSS. Users can explore causes, donate, and navigate through different pages with a clean and intuitive interface.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Demo
+https://donatezone.vercel.app/
 
-Currently, two official plugins are available:
+## Features
+- Clean and user-friendly donation interface  
+- Multiple pages (Home, About, Donate, Contact)  
+- Fully responsive design  
+- Fast performance with Vite  
+- Modular and reusable React components  
+- Smooth UI with Tailwind CSS  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Screenshot
+![Web Page Screenshot](client/src/assets/Donationinterface.png)
 
-## Expanding the ESLint configuration
+## Technologies Used
+- React.js  
+- Tailwind CSS  
+- JavaScript   
+- Node.js  
+- Express.js  
+- MongoDB  
+- Vercel Deployment  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Folder Structure
+- client/  
+  - public/  
+  - src/  
+    - assets/  
+    - components/  
+    - pages/  
+    - App.jsx 
+    - index.css  
+    - main.jsx  
+  - index.html  
+  - package.json  
+  - tailwind.config.js  
+  - vite.config.js  
+
+- server/  
+  - src/
+    - config/ 
+    - controllers/  
+    - middleware/ 
+    - models/  
+    - routes/    
+  - index.js  
+  - package.json  
+
+## How to Use
+1. Visit the live website  
+2. Navigate through available pages  
+3. Explore donation causes  
+4. Choose an amount and proceed to donate  
+
+## What I Learned
+- Component-based architecture  
+- Folder structuring in React  
+- Using Tailwind CSS for rapid UI design  
+- Routing and state management basics  
+- Deploying React apps on Vercel  
+
+## Author
+**Shruti Rawat**<br>
+Web Developer
