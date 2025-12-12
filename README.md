@@ -13,7 +13,7 @@ https://donatezone.vercel.app/
 - Smooth UI with Tailwind CSS  
 
 ## Screenshot
-![Web Page Screenshot](client/src/assets/Donationinterface.png)
+![Web Page Screenshot](src/assets/Donationinterface.png)
 
 ## Technologies Used
 - React.js  
